@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- INDIQUE L'UTILISATION DE LA VERSION JPA 2.1 -->
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+  	http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+	version="2.1">
+
+
+
+	<!-- ============================================================== -->
+	<!-- 			name = nom de l'unité de persistence 				-->
+	<!-- ************************************************************** -->
+	<!-- * transaction-type="RESOURCE_LOCAL" : Application desktop. 	-->
+	<!-- * transaction-type="JTA" : Application Web SANS SPRING			-->
+	<!-- avec serveur applicatif (Tomcat) chargé de fournir 			-->
+	<!-- le EntityManager et de gérer les Transactions. 				-->
+	<!-- * PAS d'attribut transaction-type en cas d'utilisation 		-->
+	<!-- de SPRING. Le Transaction Manager est géré directement      	--> 
+	<!-- par Spring.  													-->
+	<!-- ============================================================== -->
+	
+	<!-- 							STANDALONE 							-->
+	<!-- <persistence-unit name="default" 
+		transaction-type="JTA"> -->
+		
+	<!-- 						WEB SANS SPRING							 -->
+		<!-- <persistence-unit name="default" 
+		transaction-type="RESOURCE_LOCAL"> -->
+
+	<!-- 						AVEC SPRING 5.0.0 						-->
+	<!-- transaction manager géré par SPRING.							-->
+	<!-- Donc, ne pas utiliser l'attribut transaction-type 				-->
+<!-- 	<persistence-unit name="default"> -->
+
+	<persistence-unit name="default"
+		transaction-type="RESOURCE_LOCAL">
+
+		<class>tudu.domain.Property</class>
+		<class>tudu.domain.Role</class>
+		<class>tudu.domain.Todo</class>
+		<class>tudu.domain.TodoList</class>
+		<class>tudu.domain.User</class>
+		
+		<properties>
+			<property name="hibernate.cache.region.factory_class"
+                      value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory"/>
+		</properties>
+		
+	</persistence-unit>
+	
+</persistence>

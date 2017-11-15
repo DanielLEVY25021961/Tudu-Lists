@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+							<!-- ================= -->
+							<!--    SPRING 5.0.1   -->
+							<!-- ================= -->
+
+<!-- ====================================================================================== -->
+<!-- Déclaration des espaces de Nommage de Spring 5.0.1										-->
+<!-- * mvc pour utiliser Spring MVC 														-->
+<!-- * context pour utiliser applicationContext.xml et détecter automatiquement les beans 	-->
+<!-- * aop pour utiliser Spring AOP			 												-->
+<!-- * tx pour utiliser les annotations 													-->
+<!-- ====================================================================================== -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd 
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+	<!-- ================================================================== -->
+	<!--             DECLARATION DE ENTITYMANAGERFACTORY              		-->
+	<!-- Utilisation du bean SPRING LocalContainerEntityManagerFactoryBean. -->
+	<!-- ================================================================== -->
+	<!-- Le bean « LocalContainerEntityManagerFactoryBean » utilise			--> 
+	<!-- le Bean avec id="dataSource" du présent applicationContext.xml 	--> 
+	<!-- qui connait la référence JNDI de la DataSource et le fichier 		--> 
+	<!-- « persistence.xml » pour aboutir 									-->
+	<!--  à la création du « EntityManager » qui est utilisé 				-->
+	<!--  par la couche DAO.												-->
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+
+        <property name="dataSource" ref="dataSource"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="database" value="${jpavendoradapter.database}"/>
+                <property name="databasePlatform" value="${jpavendoradapter.databasedialect}"/>
+                <property name="showSql" value="${jpavendoradapter.showsql}"/>
+                <property name="generateDdl" value="${jpavendoradapter.generateddl}"/>
+            </bean>
+        </property>
+        <property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"/>
+        
+    </bean>
+
+	<!-- ================================================================== -->
+	<!--                GESTION DES TRANSACTIONS                       		-->
+	<!-- ================================================================== -->
+	<!--  (encapsulations des appels à la base dans une transaction).  		-->
+	<!-- Le bean « JpaTransactionManager » permet d'instancier  			-->
+	<!-- le gestionnaire de transaction et de lui associer 					-->
+	<!-- la fabrique de « EntityManager ». 									-->
+    <bean id="transactionManager"
+          class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+ 	<!-- ================================================================== -->
+	<!--                 LIEN SPRING - ORM - BASE DONNEES                   -->
+	<!-- ================================================================== -->	
+	<!-- JTA (Annotations transactionnelles) de Spring.                     -->    
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+
+    <!-- ============================================================== -->
+    <!-- DECLARATION DE LA DATASOURCE DIRECTE (sans passer par JNDI) 	-->
+    <!-- Utilisation du bean DriverManagerDataSource					-->
+	<!-- DECONSEILLE *** en web, la connexion serait gérée 				-->
+	<!-- par l'application et plus par le serveur directement  			-->
+    <!-- ============================================================== -->
+    <bean id="dataSource"
+          class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+
+        <property name="driverClass" value="${datasource.driverclassname}"/>
+        <property name="jdbcUrl" value="${dataSource.url}"/>
+        <property name="user" value="${dataSource.username}"/>
+        <property name="password" value="${dataSource.password}"/>
+        <property name="initialPoolSize" value="10"/>
+        <property name="minPoolSize" value="10"/>
+        <property name="maxPoolSize" value="${dataSource.maxActive}"/>
+        <property name="idleConnectionTestPeriod" value="600"/>
+        <property name="acquireIncrement" value="2"/>
+        <property name="maxStatements" value="300"/>
+        <property name="numHelperThreads" value="10"/>
+    </bean>
+
+    <!-- JPA annotations bean post processor -->
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+    <!-- Exception translation bean post processor -->
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+
+</beans>

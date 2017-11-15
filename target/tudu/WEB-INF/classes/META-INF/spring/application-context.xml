@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+							<!-- ================= -->
+							<!--    SPRING 5.0.1   -->
+							<!-- ================= -->
+<!-- ====================================================================================== -->
+<!-- Déclaration des espaces de Nommage de Spring 5.0.1										-->
+<!-- * mvc pour utiliser Spring MVC 														-->
+<!-- * context pour utiliser applicationContext.xml et détecter automatiquement les beans 	-->
+<!-- * aop pour utiliser Spring AOP			 												-->
+<!-- * tx pour utiliser les annotations 													-->
+<!-- ====================================================================================== -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"       
+       xsi:schemaLocation="
+	       	http://www.springframework.org/schema/beans
+	        http://www.springframework.org/schema/beans/spring-beans.xsd
+	        http://www.springframework.org/schema/mvc
+	        http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+	        http://www.springframework.org/schema/context
+	        http://www.springframework.org/schema/context/spring-context.xsd 
+	        http://www.springframework.org/schema/tx
+	        http://www.springframework.org/schema/tx/spring-tx.xsd
+	        http://www.springframework.org/schema/aop
+	        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+	<!-- ================================================================== -->
+	<!--         IMPORT DES SOUS-FICHIERS DE CONFIGURATION SPRING           -->
+	<!-- ================================================================== -->			
+    <import resource="application-context-infrastructure.xml"/>
+    <import resource="application-context-infrastructure-env.xml"/>
+    <import resource="application-context-security.xml"/>
+    <import resource="application-context-dwr.xml"/>
+
+
+	<!-- ================================================================== -->
+	<!--           ACTIVATION CONFIGURATION ANNOTATION SPRING               -->
+	<!-- ================================================================== -->		
+	<!-- active la configuration par annotations de Spring (plus de XML)    -->
+	<!-- VA RECHERCHER TOUS LES OBJETS ANNOTES SPRING DANS LE PACKAGE 		-->
+	<!-- (SERVICES, BEANS, DAO) 											-->
+    <context:component-scan base-package="tudu.service"/>
+
+
+</beans>
