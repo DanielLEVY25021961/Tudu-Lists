@@ -15,6 +15,26 @@ import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.verify;
 import static org.junit.Assert.*;
 
+/**
+ * class UserServiceImplTest :<br/>
+ * .<br/>
+ * <br/>
+ *
+ * - Exemple d'utilisation :<br/>
+ *<br/>
+ * 
+ * - Mots-clé :<br/>
+ * <br/>
+ *
+ * - Dépendances :<br/>
+ * <br/>
+ *
+ *
+ * @author daniel.levy Lévy
+ * @version 1.0
+ * @since 16 nov. 2017
+ *
+ */
 public class UserServiceImplTest {
 
     /**
@@ -39,6 +59,12 @@ public class UserServiceImplTest {
 
     
     
+    /**
+     * method before() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Before
     public void before() {
         this.user.setLogin("test_user");
@@ -50,15 +76,39 @@ public class UserServiceImplTest {
         ReflectionTestUtils.setField(this.userService, "this.entityManager", this.entityManager);
     }
 
+    
+    
+    /**
+     * method after() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @After
     public void after() {
         verify(this.entityManager);
     }
 
+    
+    
+    /**
+     * method replay() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     private void replay() {
         EasyMock.replay(this.entityManager);
     }
 
+    
+      
+    /**
+     * method testFindUser() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testFindUser() {
         expect(this.entityManager.find(User.class, "test_user")).andReturn(this.user);
@@ -69,6 +119,14 @@ public class UserServiceImplTest {
         assertEquals(testUser, this.user);
     }
 
+    
+    
+    /**
+     * method testUpdateUser() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testUpdateUser() {
         expect(this.entityManager.merge(this.user)).andReturn(null);
@@ -76,6 +134,14 @@ public class UserServiceImplTest {
         this.userService.updateUser(this.user);
     }
 
+    
+    
+    /**
+     * method testCreateUser() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testCreateUser() {
         expect(this.entityManager.find(User.class, "test_user")).andReturn(null);
@@ -107,6 +173,14 @@ public class UserServiceImplTest {
         }
     }
 
+    
+    
+    /**
+     * method testFailedCreateUser() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testFailedCreateUser() {
         expect(this.entityManager.find(User.class, "test_user")).andReturn(this.user);
@@ -120,4 +194,7 @@ public class UserServiceImplTest {
             assertNotNull(this.user);
         }
     }
+    
+    
+    
 }

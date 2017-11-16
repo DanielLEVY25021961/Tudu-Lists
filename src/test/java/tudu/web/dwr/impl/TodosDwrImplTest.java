@@ -17,6 +17,26 @@ import java.util.Calendar;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 
+/**
+ * class TodosDwrImplTest :<br/>
+ * .<br/>
+ * <br/>
+ *
+ * - Exemple d'utilisation :<br/>
+ *<br/>
+ * 
+ * - Mots-clé :<br/>
+ * <br/>
+ *
+ * - Dépendances :<br/>
+ * <br/>
+ *
+ *
+ * @author daniel.levy Lévy
+ * @version 1.0
+ * @since 16 nov. 2017
+ *
+ */
 public class TodosDwrImplTest {
 
     Todo todo = new Todo();
@@ -27,6 +47,14 @@ public class TodosDwrImplTest {
 
     TodosDwrImpl todosDwrImpl = new TodosDwrImplTestable();
 
+    
+    
+    /**
+     * method before() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Before
     public void before() {
     	
@@ -59,6 +87,12 @@ public class TodosDwrImplTest {
 
     
     
+    /**
+     * method after() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @After
     public void after() {
         verify(this.todosService);
@@ -67,6 +101,12 @@ public class TodosDwrImplTest {
 
     
     
+    /**
+     * method replay_() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     private void replay_() {
         replay(this.todosService);
         replay(this.userService);
@@ -74,6 +114,12 @@ public class TodosDwrImplTest {
 
     
     
+    /**
+     * method testGetCurrentTodoLists() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testGetCurrentTodoLists() {
     	
@@ -131,6 +177,12 @@ public class TodosDwrImplTest {
 
     
     
+    /**
+     * method testGetTodoById() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     public void testGetTodoById() {
         expect(this.todosService.findTodo("0001")).andReturn(this.todo);
 
@@ -144,6 +196,12 @@ public class TodosDwrImplTest {
 
     
     
+    /**
+     * method testReopenTodo() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     public void testReopenTodo() {
     	
         expect(this.todosService.reopenTodo("001")).andReturn(this.todo);
@@ -155,6 +213,12 @@ public class TodosDwrImplTest {
 
     
     
+    /**
+     * method testCompleteTodo() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     public void testCompleteTodo() {
         expect(this.todosService.completeTodo("001")).andReturn(this.todo);
 
@@ -165,6 +229,12 @@ public class TodosDwrImplTest {
 
     
     
+    /**
+     * method testEditTodo() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     public void testEditTodo() {
         expect(this.todosService.findTodo("001")).andReturn(this.todo);
 
@@ -189,6 +259,12 @@ public class TodosDwrImplTest {
 
     
     
+    /**
+     * method testEditTodoWithErrors() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     public void testEditTodoWithErrors() {
         expect(this.todosService.findTodo("001")).andReturn(this.todo);
 
@@ -213,6 +289,12 @@ public class TodosDwrImplTest {
 
     
     
+    /**
+     * method testInputNotes() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     public void testInputNotes() {
     	
         replay_();
@@ -240,6 +322,12 @@ public class TodosDwrImplTest {
 
     
     
+    /**
+     * method testDeleteTodo() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     public void testDeleteTodo() {
     	
         expect(this.todosService.findTodo("001")).andReturn(this.todo);

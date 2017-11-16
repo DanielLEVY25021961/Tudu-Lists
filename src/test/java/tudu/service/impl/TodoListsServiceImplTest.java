@@ -30,6 +30,26 @@ import tudu.domain.User;
 import tudu.security.PermissionDeniedException;
 import tudu.service.UserService;
 
+/**
+ * class TodoListsServiceImplTest :<br/>
+ * .<br/>
+ * <br/>
+ *
+ * - Exemple d'utilisation :<br/>
+ *<br/>
+ * 
+ * - Mots-clé :<br/>
+ * <br/>
+ *
+ * - Dépendances :<br/>
+ * <br/>
+ *
+ *
+ * @author daniel.levy Lévy
+ * @version 1.0
+ * @since 16 nov. 2017
+ *
+ */
 public class TodoListsServiceImplTest {
 
     static String todoListBackup = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
@@ -78,6 +98,12 @@ public class TodoListsServiceImplTest {
     TodoListsServiceImpl todoListsService = new TodoListsServiceImpl();
 
     
+    /**
+     * method before() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Before
     public void before() {
         this.todoList.setListId("001");
@@ -95,17 +121,41 @@ public class TodoListsServiceImplTest {
         ReflectionTestUtils.setField(this.todoListsService, "this.userService", this.userService);
     }
 
+    
+    
+    /**
+     * method after() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @After
     public void after() {
         verify(this.entityManager);
         verify(this.userService);
     }
 
+    
+        
+    /**
+     * method replay() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     private void replay() {
         EasyMock.replay(this.entityManager);
         EasyMock.replay(this.userService);
     }
 
+    
+    
+    /**
+     * method testCreateTodoList() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testCreateTodoList() {
         expect(this.userService.getCurrentUser()).andReturn(this.user);
@@ -118,6 +168,14 @@ public class TodoListsServiceImplTest {
         assertTrue(this.user.getTodoLists().contains(this.todoList));
     }
 
+    
+    
+    /**
+     * method testFindTodoList() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testFindTodoList() {
         this.todoList.getUsers().add(this.user);
@@ -134,6 +192,14 @@ public class TodoListsServiceImplTest {
         }
     }
 
+    
+    
+    /**
+     * method testFailedFindTodoList() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testFailedFindTodoList() {
         expect(this.entityManager.find(TodoList.class, "001")).andReturn(this.todoList);
@@ -149,6 +215,14 @@ public class TodoListsServiceImplTest {
         }
     }
 
+    
+    
+    /**
+     * method testUpdateTodoList() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testUpdateTodoList() {
 
@@ -157,6 +231,15 @@ public class TodoListsServiceImplTest {
         this.todoListsService.updateTodoList(this.todoList);
     }
 
+    
+    
+    
+    /**
+     * method testDeleteTodoList() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testDeleteTodoList() {
         this.todoList.getUsers().add(this.user);
@@ -172,6 +255,15 @@ public class TodoListsServiceImplTest {
         assertFalse(this.user.getTodoLists().contains(this.todoList));
     }
 
+    
+    
+    
+    /**
+     * method testAddTodoListUser() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testAddTodoListUser() {
         this.todoList.getUsers().add(this.user);
@@ -190,6 +282,14 @@ public class TodoListsServiceImplTest {
         assertTrue(user2.getTodoLists().contains(this.todoList));
     }
 
+    
+    
+    /**
+     * method testDeleteTodoListUser() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testDeleteTodoListUser() {
         this.todoList.getUsers().add(this.user);
@@ -210,6 +310,14 @@ public class TodoListsServiceImplTest {
         assertFalse(user2.getTodoLists().contains(this.todoList));
     }
 
+    
+    
+    /**
+     * method testBackupTodoList() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testBackupTodoList() {
         this.todoList.getUsers().add(this.user);
@@ -247,6 +355,15 @@ public class TodoListsServiceImplTest {
         assertTrue(xmlContent.indexOf("<completed>false</completed>") > 0);
     }
 
+    
+    
+    /**
+     * method testRestoreTodoListCreate() :<br/>
+     * .<br/>
+     * <br/>
+     *
+     * @throws Exception : void :  .<br/>
+     */
     @Test
     public void testRestoreTodoListCreate() throws Exception {
         InputStream content = new ByteArrayInputStream(todoListBackup
@@ -263,6 +380,15 @@ public class TodoListsServiceImplTest {
         this.todoListsService.restoreTodoList("create", "001", content);
     }
 
+    
+    
+    /**
+     * method testRestoreTodoListReplace() :<br/>
+     * .<br/>
+     * <br/>
+     *
+     * @throws Exception : void :  .<br/>
+     */
     @Test
     public void testRestoreTodoListReplace() throws Exception {
         InputStream content = new ByteArrayInputStream(todoListBackup
@@ -285,6 +411,15 @@ public class TodoListsServiceImplTest {
         this.todoListsService.restoreTodoList("replace", "001", content);
     }
 
+    
+    
+    /**
+     * method testRestoreTodoListMerge() :<br/>
+     * .<br/>
+     * <br/>
+     *
+     * @throws Exception : void :  .<br/>
+     */
     @Test
     public void testRestoreTodoListMerge() throws Exception {
         InputStream content = new ByteArrayInputStream(todoListBackup
@@ -303,4 +438,7 @@ public class TodoListsServiceImplTest {
 
         assertNotNull(this.todoList.getLastUpdate());
     }
+    
+    
+    
 }

@@ -10,8 +10,36 @@ import java.util.TreeSet;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 
+/**
+ * class TodoTest :<br/>
+ * .<br/>
+ * <br/>
+ *
+ * - Exemple d'utilisation :<br/>
+ *<br/>
+ * 
+ * - Mots-clé :<br/>
+ * <br/>
+ *
+ * - Dépendances :<br/>
+ * <br/>
+ *
+ *
+ * @author daniel.levy Lévy
+ * @version 1.0
+ * @since 16 nov. 2017
+ *
+ */
 public class TodoTest {
 
+	
+	
+    /**
+     * method testCompareTo() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testCompareTo() {
         Todo todo1 = new Todo();
@@ -75,6 +103,13 @@ public class TodoTest {
         assertEquals("02", testTodo.getTodoId());
     }
 
+    
+    /**
+     * method testEquals() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testEquals() {
         Todo todo1 = new Todo();
@@ -90,4 +125,6 @@ public class TodoTest {
 
         assertNotSame(todo1, todo3);
     }
+    
+    
 }

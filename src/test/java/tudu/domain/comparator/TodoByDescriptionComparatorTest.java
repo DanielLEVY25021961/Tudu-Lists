@@ -10,8 +10,36 @@ import java.util.TreeSet;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * class TodoByDescriptionComparatorTest :<br/>
+ * .<br/>
+ * <br/>
+ *
+ * - Exemple d'utilisation :<br/>
+ *<br/>
+ * 
+ * - Mots-clé :<br/>
+ * <br/>
+ *
+ * - Dépendances :<br/>
+ * <br/>
+ *
+ *
+ * @author daniel.levy Lévy
+ * @version 1.0
+ * @since 16 nov. 2017
+ *
+ */
 public class TodoByDescriptionComparatorTest {
 
+	
+	
+    /**
+     * method testCompare() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testCompare() {
         Todo todo1 = new Todo();
@@ -75,4 +103,6 @@ public class TodoByDescriptionComparatorTest {
         testTodo = iterator.next();
         assertEquals("05", testTodo.getTodoId());
     }
+    
+    
 }

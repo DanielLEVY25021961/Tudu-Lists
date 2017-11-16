@@ -28,3 +28,6 @@
         </dwr:remote>
     </bean>
 </beans>
+
+
+<!--                            http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd -->

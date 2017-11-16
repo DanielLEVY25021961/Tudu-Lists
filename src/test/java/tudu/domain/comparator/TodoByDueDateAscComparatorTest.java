@@ -7,8 +7,36 @@ import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * class TodoByDueDateAscComparatorTest :<br/>
+ * .<br/>
+ * <br/>
+ *
+ * - Exemple d'utilisation :<br/>
+ *<br/>
+ * 
+ * - Mots-clé :<br/>
+ * <br/>
+ *
+ * - Dépendances :<br/>
+ * <br/>
+ *
+ *
+ * @author daniel.levy Lévy
+ * @version 1.0
+ * @since 16 nov. 2017
+ *
+ */
 public class TodoByDueDateAscComparatorTest {
 
+	
+	
+    /**
+     * method testCompare() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testCompare() {
         Todo todo1 = new Todo();
@@ -89,4 +117,6 @@ public class TodoByDueDateAscComparatorTest {
         testTodo = iterator.next();
         assertEquals("06", testTodo.getTodoId());
     }
+    
+    
 }

@@ -10,8 +10,37 @@ import java.util.Calendar;
 
 import static org.junit.Assert.assertTrue;
 
+/**
+ * class RssFeedServletTest :<br/>
+ * .<br/>
+ * <br/>
+ *
+ * - Exemple d'utilisation :<br/>
+ *<br/>
+ * 
+ * - Mots-clé :<br/>
+ * <br/>
+ *
+ * - Dépendances :<br/>
+ * <br/>
+ *
+ *
+ * @author daniel.levy Lévy
+ * @version 1.0
+ * @since 16 nov. 2017
+ *
+ */
 public class RssFeedServletTest {
 
+	
+	
+    /**
+     * method testDoGet() :<br/>
+     * .<br/>
+     * <br/>
+     *
+     * @throws Exception : void :  .<br/>
+     */
     @Test
     public void testDoGet() throws Exception {
 

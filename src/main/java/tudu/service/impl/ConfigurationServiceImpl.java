@@ -83,6 +83,12 @@ public class ConfigurationServiceImpl implements ConfigurationService {
 
     
     
+    /**
+     * method init() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @PostConstruct
     public void init() {
     	

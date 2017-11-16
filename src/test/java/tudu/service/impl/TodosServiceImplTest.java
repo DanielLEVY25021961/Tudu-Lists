@@ -17,6 +17,26 @@ import javax.persistence.EntityManager;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 
+/**
+ * class TodosServiceImplTest :<br/>
+ * .<br/>
+ * <br/>
+ *
+ * - Exemple d'utilisation :<br/>
+ *<br/>
+ * 
+ * - Mots-clé :<br/>
+ * <br/>
+ *
+ * - Dépendances :<br/>
+ * <br/>
+ *
+ *
+ * @author daniel.levy Lévy
+ * @version 1.0
+ * @since 16 nov. 2017
+ *
+ */
 public class TodosServiceImplTest {
 
     /**
@@ -67,7 +87,15 @@ public class TodosServiceImplTest {
      */
     TodosServiceImpl todosService = new TodosServiceImpl();
 
+
     
+    
+    /**
+     * method setUp() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Before
     public void setUp() {
         this.todo.setTodoId("0001");
@@ -92,6 +120,14 @@ public class TodosServiceImplTest {
         ReflectionTestUtils.setField(this.todosService, "this.userService", this.userService);
     }
 
+    
+    
+    /**
+     * method tearDown() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @After
     public void tearDown() {
         verify(this.entityManager);
@@ -99,12 +135,28 @@ public class TodosServiceImplTest {
         verify(this.userService);
     }
 
+    
+    
+    /**
+     * method replay() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     private void replay() {
         EasyMock.replay(this.entityManager);
         EasyMock.replay(this.todoListsService);
         EasyMock.replay(this.userService);
     }
 
+    
+    
+    /**
+     * method testFindTodo() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testFindTodo() {
         this.todo.setTodoList(this.todoList);
@@ -122,6 +174,14 @@ public class TodosServiceImplTest {
         }
     }
 
+    
+    
+    /**
+     * method testFailedFindTodo() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testFailedFindTodo() {
         expect(this.entityManager.find(Todo.class, "0001")).andReturn(this.todo);
@@ -137,6 +197,14 @@ public class TodosServiceImplTest {
         }
     }
 
+    
+    
+    /**
+     * method testCreateTodo() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testCreateTodo() {
         expect(this.todoListsService.findTodoList("001")).andReturn(this.todoList);
@@ -152,6 +220,14 @@ public class TodosServiceImplTest {
         assertTrue(this.todoList.getTodos().contains(this.todo));
     }
 
+    
+    
+    /**
+     * method testUpdateTodo() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testUpdateTodo() {
         this.todoListsService.updateTodoList(this.todo.getTodoList());
@@ -163,6 +239,14 @@ public class TodosServiceImplTest {
         assertTrue(this.todo.isCompleted());
     }
 
+    
+    
+    /**
+     * method testDeleteTodo() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testDeleteTodo() {
         this.todo.setTodoList(this.todoList);
@@ -178,6 +262,14 @@ public class TodosServiceImplTest {
         assertFalse(this.todoList.getTodos().contains(this.todo));
     }
 
+    
+    
+    /**
+     * method testCompleteTodo() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testCompleteTodo() {
     	
@@ -198,6 +290,14 @@ public class TodosServiceImplTest {
         assertNotNull(todo2.getCompletionDate());
     }
 
+    
+    
+    /**
+     * method testReopenTodo() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testReopenTodo() {
         this.todo.setTodoList(this.todoList);
@@ -216,4 +316,6 @@ public class TodosServiceImplTest {
         assertFalse(todo2.isCompleted());
         assertNull(todo2.getCompletionDate());
     }
+    
+    
 }

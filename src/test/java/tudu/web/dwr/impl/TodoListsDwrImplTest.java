@@ -12,6 +12,26 @@ import tudu.service.UserService;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * class TodoListsDwrImplTest :<br/>
+ * .<br/>
+ * <br/>
+ *
+ * - Exemple d'utilisation :<br/>
+ *<br/>
+ * 
+ * - Mots-clé :<br/>
+ * <br/>
+ *
+ * - Dépendances :<br/>
+ * <br/>
+ *
+ *
+ * @author daniel.levy Lévy
+ * @version 1.0
+ * @since 16 nov. 2017
+ *
+ */
 public class TodoListsDwrImplTest {
 
     TodoList todoList = new TodoList();
@@ -21,6 +41,15 @@ public class TodoListsDwrImplTest {
 
     TodoListsDwrImpl todoListsDwr = new TodoListsDwrImpl();
 
+    
+    
+    
+    /**
+     * method before() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Before
     public void before() {
     	
@@ -36,17 +65,43 @@ public class TodoListsDwrImplTest {
         ReflectionTestUtils.setField(this.todoListsDwr, "userService", this.userService);
     }
 
+    
+    
+    /**
+     * method after() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @After
     public void after() {
         verify(this.todoListsService);
         verify(this.userService);
     }
 
+    
+    
+    
+    /**
+     * method replay_() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     private void replay_() {
         replay(this.todoListsService);
         replay(this.userService);
     }
 
+    
+    
+    
+    /**
+     * method testGetTodoListName() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testGetTodoListName() {
         expect(this.todoListsService.findTodoList("001")).andReturn(this.todoList);
@@ -57,6 +112,15 @@ public class TodoListsDwrImplTest {
         assertEquals("Description", name);
     }
 
+    
+    
+    
+    /**
+     * method testGetTodoListRss() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testGetTodoListRss() {
     	
@@ -71,6 +135,12 @@ public class TodoListsDwrImplTest {
 
     
     
+    /**
+     * method testGetTodoListRss2() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testGetTodoListRss2() {
     	
@@ -85,6 +155,12 @@ public class TodoListsDwrImplTest {
 
     
     
+    /**
+     * method testGetTodoListUsers() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testGetTodoListUsers() {
     	
@@ -120,6 +196,12 @@ public class TodoListsDwrImplTest {
 
     
     
+    /**
+     * method testAddTodoListUser() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testAddTodoListUser() {
     	
@@ -132,6 +214,12 @@ public class TodoListsDwrImplTest {
 
     
     
+    /**
+     * method testDeleteTodoListUser() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testDeleteTodoListUser() {
     	this.todoListsService.deleteTodoListUser("001", "test_user");
@@ -143,6 +231,12 @@ public class TodoListsDwrImplTest {
 
     
     
+    /**
+     * method testEditTodoList() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testEditTodoList() {
     	

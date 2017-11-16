@@ -22,6 +22,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/logout")
 public class LogoutController {
 
+    /**
+     * method logout() :<br/>
+     * .<br/>
+     * <br/>
+     *
+     * @param pRequest
+     * @param pResponse
+     * @return : String :  .<br/>
+     */
     @RequestMapping(method = RequestMethod.GET)
     public String logout(HttpServletRequest pRequest, HttpServletResponse pResponse) {
 

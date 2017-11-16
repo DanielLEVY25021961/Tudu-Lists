@@ -13,8 +13,35 @@ import static org.easymock.EasyMock.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+/**
+ * class UserDetailsServiceImplTest :<br/>
+ * .<br/>
+ * <br/>
+ *
+ * - Exemple d'utilisation :<br/>
+ *<br/>
+ * 
+ * - Mots-clé :<br/>
+ * <br/>
+ *
+ * - Dépendances :<br/>
+ * <br/>
+ *
+ *
+ * @author daniel.levy Lévy
+ * @version 1.0
+ * @since 16 nov. 2017
+ *
+ */
 public class UserDetailsServiceImplTest {
 
+	
+    /**
+     * method testLoadUserByUsername() :<br/>
+     * .<br/>
+     * <br/>
+     * : void :  .<br/>
+     */
     @Test
     public void testLoadUserByUsername() {
         UserDetailsServiceImpl userDetailService = new UserDetailsServiceImpl();
@@ -44,4 +71,6 @@ public class UserDetailsServiceImplTest {
 
         verify(userService);
     }
+    
+    
 }

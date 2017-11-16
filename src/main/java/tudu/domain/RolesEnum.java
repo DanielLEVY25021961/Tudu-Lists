@@ -7,5 +7,13 @@ package tudu.domain;
  */
 public enum RolesEnum {
 
-	ROLE_USER, ROLE_ADMIN
+	/**
+	 * ROLE_USER : RolesEnum :<br/>
+	 * .<br/>
+	 */
+	ROLE_USER, /**
+	 * ROLE_ADMIN : RolesEnum :<br/>
+	 * .<br/>
+	 */
+	ROLE_ADMIN
 }
