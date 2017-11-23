@@ -230,7 +230,9 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	<!-- Eviter des conflits de versions entre dépendances SPRING    -->
 	<!-- =========================================================== -->  
 	<dependencyManagement>
+	
 	    <dependencies>
+	    
 	        <!-- https://mvnrepository.com/artifact/org.springframework/spring-framework-bom -->
 			<dependency>
 			    <groupId>org.springframework</groupId>
@@ -264,7 +266,9 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 			    <artifactId>spring-security-taglibs</artifactId>
 			    <version>${spring.security.version}</version>
 			</dependency>
+			
 	    </dependencies>
+	    
 	</dependencyManagement>
 
 
