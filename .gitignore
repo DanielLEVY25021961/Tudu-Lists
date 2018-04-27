@@ -1,2 +1,4 @@
 /target/
 /.pmd
+/.classpath
+/.gitignore
